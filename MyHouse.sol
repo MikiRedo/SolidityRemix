@@ -64,5 +64,11 @@ contract MyToken is ERC1155 {
                 );
         super.safeTransferFrom(from, to, id, amount, ""); //function reserved to ERC1155
     }
-  
+
+    /*function LastOne(address from, address to, uint id, uint amount) public{
+    if (amount == 4) {
+        ????
+        "You may sell it to any address"
+    }*/
+
 }
