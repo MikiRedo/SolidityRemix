@@ -19,7 +19,6 @@ contract MyToken is ERC1155 {
     event OwnershipGranted(address indexed newOwner);
 
     //error OnlyOwners(address _owner, address caller);
-    //no sabia como montar el error para el modifier al haber 4 owners
 
     constructor() ERC1155("") {
         _mint(MomsWallet, 1, 1, "One for the mother");
@@ -43,13 +42,15 @@ contract MyToken is ERC1155 {
 
     //function to add the family as a owner of the SC
     function FamilyIsContractOwner(address newOwner) public OnlyOwnersAllowed {
-        require(
-                newOwner == MomsWallet || 
-                newOwner == DadsWallet || 
-                newOwner == BrosWallet,
-                "You're not allowed to become an owner of this SC"
-                );
-        _owners[newOwner] = true; //we add the newOwner to the mapping of the addresses that are owners
+        if(
+            newOwner == MomsWallet || 
+            newOwner == DadsWallet || 
+            newOwner == BrosWallet
+            ) {
+            _owners[newOwner] = true; //we add the newOwner to the mapping of the addresses that are owners
+        } else{
+        _owners[newOwner] = false; //not sure if its the smartest way
+        }
         emit OwnershipGranted(newOwner);
     }
     /*function MoveTokens(address from, address to, uint amount) public OnlyOwnersAllowed {
