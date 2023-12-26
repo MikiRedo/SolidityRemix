@@ -53,8 +53,16 @@ contract MyToken is ERC1155 {
         }
         emit OwnershipGranted(newOwner);
     }
-    /*function MoveTokens(address from, address to, uint amount) public OnlyOwnersAllowed {
-        super.MoveTokens(from, to, amount);
-    }*/
+
+    function MoveTokens(address from, address to, uint id, uint amount) public OnlyOwnersAllowed {
+        require(
+                to == MomsWallet || 
+                to == DadsWallet || 
+                to == BrosWallet || 
+                to == MyWallet, 
+                "You can only transfer to the designated owners"
+                );
+        super.safeTransferFrom(from, to, id, amount, ""); //function reserved to ERC1155
+    }
   
 }
