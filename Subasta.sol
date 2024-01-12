@@ -35,7 +35,8 @@ contract Subasta {
             mayorPostor = msg.sender;
             mayorPuja = msg.value;
             bloqueUltimaPuja = block.number;
-        }
+        } else {
+            revert("Not enough money");  //si la puja no es superior, revierte
     }
 
     function finalizar_Subasta() public {
