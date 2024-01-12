@@ -37,7 +37,7 @@ contract MyToken is ERC1155 {
                 msg.sender == MyWallet,
                 "You're not the owner"
         );
-        _;  //why "_;"?
+        _;
     }
 
     //function to add the family as a owner of the SC
