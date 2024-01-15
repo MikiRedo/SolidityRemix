@@ -35,7 +35,7 @@ contract MyToken is ERC1155 {
                 msg.sender == DadsWallet ||
                 msg.sender == BrosWallet ||
                 msg.sender == MyWallet,
-                "You're not the owner"
+                "Youre not the owner"
         );
         _;
     }
