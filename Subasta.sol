@@ -41,7 +41,7 @@ contract Subasta {
 
     function finalizar_Subasta() public {
         if (mayorPostor == address(0)) revert("No hay puja");
-        if (block.number <= bloqueUltimaPuja + bloquesMinimosParaCierre) revert("Can't");
+        if (block.number <= bloqueUltimaPuja + bloquesMinimosParaCierre) revert("Cant");
 
         finalizado = true;
         payable(vendedor).transfer(mayorPuja);
