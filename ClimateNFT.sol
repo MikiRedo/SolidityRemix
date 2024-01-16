@@ -8,17 +8,17 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract ClimateNFT is ERC721, ERC721Burnable, Ownable {
 
     bool public receivedCredits;  // false por defecto
+    uint public credits;
+    
     uint public tokenID;
     string public projectName;
     string public projectURL;
-    uint public credits;
+    
 
     event NFTMinted(uint indexed tokenID, string projectName, string projectURL, address indexed developer, uint credits);
 
-    constructor(address initialOwner, string memory _projectName, string memory _projectURL) ERC721("Climate NFT", "CNFT") Ownable(initialOwner) {
-        projectName = _projectName;
-        projectURL = _projectURL;
-    } 
+    constructor(address initialOwner) ERC721("Climate NFT", "CNFT") Ownable(initialOwner) 
+    {} 
 
     // función para cambiar el estado, si recibimos los créditos, lo pasamos a true
     function setReceivedCredits(bool status, uint creditsRecived) external onlyOwner {
@@ -27,8 +27,11 @@ contract ClimateNFT is ERC721, ERC721Burnable, Ownable {
     }
 
     // mintear directamente en la wallet del developer, un solo nft equivalente a x créditos
-    function mintNFT(address developer) external onlyOwner {
+    function mintNFT(address developer, string memory _projectName, string memory _projectURL) external onlyOwner {
         require(receivedCredits, "Credits not received yet");
+        projectName = _projectName;
+        projectURL = _projectURL;
+
         _safeMint(developer, tokenID);
         tokenID++;
 
