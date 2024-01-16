@@ -17,6 +17,7 @@ contract ClimateNFT is ERC721, ERC721Burnable, Ownable {
 
     event NFTMinted(uint indexed tokenID, string projectName, string projectURL, address indexed developer, uint credits);
 
+    //el token siempre se llamara asi, aunque luego el nft sea distinto para cada proyecto (tokenID++)
     constructor(address initialOwner) ERC721("Climate NFT", "CNFT") Ownable(initialOwner) 
     {} 
 
