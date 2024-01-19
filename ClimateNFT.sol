@@ -21,6 +21,7 @@ contract ClimateNFT is ERC721, ERC721Burnable, Ownable {
     event creditsIn(address developer, uint credits); //event cuando recibimos los creditos
     event NFTMinted(uint indexed tokenID, string projectName, string projectURL, address indexed developer, uint credits); //event cuando minteamos nft
     event NFTexchanged(address developer, uint credits, address owner);
+    event CCBurn(uint ccAmount, uint tokenID);
 
     constructor(address initialOwner, address _climateCoin) ERC721("Climate NFT", "CNFT") Ownable(initialOwner) {
         climateCoin = IERC20(_climateCoin);
@@ -78,5 +79,6 @@ contract ClimateNFT is ERC721, ERC721Burnable, Ownable {
         else {
             revert("Token ID has no coincidences");
         }
+        emit CCBurn(ccAmount, tokenID);
     }
 }
