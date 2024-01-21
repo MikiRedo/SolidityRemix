@@ -55,7 +55,8 @@ contract ClimateNFT is ERC721, ERC721Burnable, Ownable {
         feePercentage = newFeePercentage;
     }
 
-
+    //primero hay que mintear desde el otro contrato (ClimateCoin.sol) CC a esta direccion
+    
     function exchangeNFTForCC(uint tokenId, uint amount) external onlyOwner {
         require(amount == credits);                                         //amount debe ser igual al numero de creditos
         require(ownerOf(tokenId) == developer, "Youre not the owner");
